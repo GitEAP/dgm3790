@@ -9,12 +9,15 @@ $longdescription = $_POST[longdescription];
 $price = $_POST[price];
 $shipping = $price * .199;
 $tax = $price * 0.065;
+
 $picture = $_POST[picture];
 $ext =  pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
 $filename = $title . '.' . $ext;
-$filepath = 'img/';
+$filepath = 'img/products/';
 $picturename = $filepath . $filename;
+
 $validImage = true;
+$category = $_POST[category];
 
 echo  '<br /><br /><div class="row"><div class="col-xs-1"></div><div class="col-xs-10"><article class="clearfix panel panel-default">';
 
@@ -41,8 +44,8 @@ if ($validImage == true){
 
     $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
 
-    $query = "INSERT INTO products (title, shortdescription, longdescription, price, picture, shipping, tax)" .
-    "VALUES ('$title', '$shortdescription', '$longdescription', '$price', '$picturename', '$shipping', '$tax')";
+    $query = "INSERT INTO products (title, shortdescription, longdescription, price, picture, shipping, tax, category_id)" .
+    "VALUES ('$title', '$shortdescription', '$longdescription', '$price', '$picturename', '$shipping', '$tax', '$category')";
 
     $result = mysqli_query($dbconnect, $query) or die('run query failed');
 

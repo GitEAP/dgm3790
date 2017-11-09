@@ -34,19 +34,19 @@ while($row1 = mysqli_fetch_array($result1)){
   if($row1['mem_id'] == $mem_id){
     $result2 = mysqli_query($dbconnect, $query2) or die('product query failed');
     while($row2 = mysqli_fetch_array($result2)){
-      if($row2['id'] == $row1['product_id']){
+      if($row2['product_id'] == $row1['product_id']){
           echo '<article class="clearfix panel panel-default">';
           echo '<div class="col-xs-4"><img src="'. $row2['picture'] .'" alt="Products" /> </div>';
           echo  '<div class="col-xs-8"><h3>' . $row2['title'] . '</h3>';
           echo '<p>Price: $' . $row2['price'] . '</p>';
           echo  '<p>'. $row2['shortdescription'] . '</p>';
-          echo '<div class="form-group"><span>Quantity<input type="number" name="amount'.$row2['id'].'" value="1" class="form-control" required></span></div><br /><br />';
-          echo '<a class="delete_button" href=deleteCartItem.php?id='.$row1['id'].'>Remove</a>';
-          echo '<input type="hidden" name="title'.$row2['id'].'" value="'.$row2['title'].'">';
-          echo '<input type="hidden" name="price'.$row2['id'].'" value="'.$row2['price'].'">';
-          echo '<input type="hidden" name="shipping'.$row2['id'].'" value="'.$row2['shipping'].'">';
-          echo '<input type="hidden" name="tax'.$row2['id'].'" value="'.$row2['tax'].'">';
-          echo '<input type="hidden" name="product'.$row2['id'].'" value="'.$row2['id'].'">';
+          echo '<div class="form-group"><span>Quantity<input type="number" name="amount'.$row2['product_id'].'" value="1" class="form-control" required></span></div><br /><br />';
+          echo '<a class="delete_button" href=deleteCartItem.php?id='.$row1['product_id'].'>Remove</a>';
+          echo '<input type="hidden" name="title'.$row2['product_id'].'" value="'.$row2['title'].'">';
+          echo '<input type="hidden" name="price'.$row2['product_id'].'" value="'.$row2['price'].'">';
+          echo '<input type="hidden" name="shipping'.$row2['product_id'].'" value="'.$row2['shipping'].'">';
+          echo '<input type="hidden" name="tax'.$row2['product_id'].'" value="'.$row2['tax'].'">';
+          echo '<input type="hidden" name="product'.$row2['product_id'].'" value="'.$row2['product_id'].'">';
           echo  '</article>';
       };
     };

@@ -36,7 +36,7 @@ include 'head.php';
           echo  '<h3>' . $row['title'] . '</h3>';
           echo '<p>Price: $' . $row['price'] . ' | Shipping: $' . $row['shipping'] . ' | Tax: $' . $row['tax'] .'</p>';
           echo  '<p>'. $row['shortdescription'] . '</p>';
-          echo '<a href="admin_detail.php?id='.$row['id'].'"> Detail view </a> | <a href="update.php?id='.$row['id'].'"> Update </a> | <a href=delete.php?id='.$row['id'].'> Delete</a>';
+          echo '<a href="admin_detail.php?id='.$row['product_id'].'"> Detail view </a> | <a href="update.php?id='.$row['product_id'].'"> Update </a> | <a href=delete.php?id='.$row['product_id'].'> Delete</a>';
           echo  '</article>';
       }
       ?>

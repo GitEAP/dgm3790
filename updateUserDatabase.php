@@ -11,7 +11,7 @@ $id = $_POST['id'];
 
 $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
 
-$query = "SELECT * FROM member WHERE id='$id'";
+$query = "SELECT * FROM member WHERE mem_id='$id'";
 
 $result = mysqli_query($dbconnect, $query) or die('update query failed');
 
@@ -23,7 +23,7 @@ echo  '<br /><br /><div class="row"><div class="col-xs-1"></div><div class="col-
 
 $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
 
-$query = "UPDATE member SET email='$email', name='$name', phone='$phone', address='$address',  creditcard='$creditcard' WHERE id=$id";
+$query = "UPDATE member SET email='$email', name='$name', phone='$phone', address='$address',  creditcard='$creditcard' WHERE mem_id=$id";
 
 $result = mysqli_query($dbconnect, $query) or die('update db query failed');
 

@@ -63,7 +63,7 @@ $stripeSubTotal = $subTotal * 100;
 
 $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
 
-$query = "SELECT * FROM member WHERE id=$mem_id";
+$query = "SELECT * FROM member WHERE mem_id=$mem_id";
 $resultMember = mysqli_query($dbconnect, $query) or die('Member query failed');
 $foundMember = mysqli_fetch_array($resultMember);
 

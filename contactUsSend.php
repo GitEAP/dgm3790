@@ -4,7 +4,7 @@ require_once('variable.php');
 $subject = $_POST['subject'];
 $message = $_POST['message'];
 $from = $_POST['email'];
-$to = "kylejohnson2612@gmail.com";
+$to = "nba_eap@hotmail.com";
   
 $newMessage = "Hi Hat Team,\n You have a message from $from.\nMessage:\n$message";
 

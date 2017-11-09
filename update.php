@@ -6,7 +6,7 @@ $id = $_GET['id'];
 
 $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
 
-$query = "SELECT * FROM products WHERE id='$id'";
+$query = "SELECT * FROM products WHERE product_id='$id'";
 
 $result = mysqli_query($dbconnect, $query) or die('update query failed');
 
@@ -50,7 +50,7 @@ include 'head.php';
           <span>Photo<input type="file" name="picture" value="<?php echo $found['picture'] ?>" placeholder="<?php echo $found['picture'] ?>" class="form-control"></span>
         </div>
 
-        <input type="hidden" name="id" value=" <?php echo $found['id'] ?> ">
+        <input type="hidden" name="id" value=" <?php echo $found['product_id'] ?> ">
 
         <br /><br />
         <div class="text-center">

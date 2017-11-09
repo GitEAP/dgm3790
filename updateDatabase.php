@@ -13,7 +13,7 @@ $id = $_POST['id'];
 
 $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
 
-$query = "SELECT * FROM products WHERE id='$id'";
+$query = "SELECT * FROM products WHERE product_id='$id'";
 
 $result = mysqli_query($dbconnect, $query) or die('update query failed');
 
@@ -44,7 +44,7 @@ if ($validImage == true){
 
     $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
 
-    $query = "UPDATE products SET title='$title', shortdescription='$shortdescription', longdescription='$longdescription', price='$price',  picture='$picturename', shipping='$shipping', tax='$tax' WHERE id=$id";
+    $query = "UPDATE products SET title='$title', shortdescription='$shortdescription', longdescription='$longdescription', price='$price',  picture='$picturename', shipping='$shipping', tax='$tax' WHERE product_id=$id";
 
     $result = mysqli_query($dbconnect, $query) or die('update db query failed');
 

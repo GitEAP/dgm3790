@@ -2,7 +2,7 @@
 $id = $_COOKIE['id'];
 require_once('variable.php');
 $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
-$query = "SELECT * FROM member WHERE id=$id";
+$query = "SELECT * FROM member WHERE mem_id=$id";
 $result = mysqli_query($dbconnect, $query) or die('send message query failed');
 $found = mysqli_fetch_array($result);
 

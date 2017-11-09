@@ -5,7 +5,7 @@ $id = $_GET['id'];
 
 $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
 
-$query = "SELECT * FROM products WHERE id=$id";
+$query = "SELECT * FROM products WHERE product_id=$id";
 $result = mysqli_query($dbconnect, $query) or die ('run display query failed');
 $found = mysqli_fetch_array($result);
 
@@ -23,7 +23,7 @@ include 'head.php';
       echo '<div class="col-xs-8"><h3>' . $found['title'] . '</h3>';
       echo '<p>Price: $' . $found['price'] . ' | Shipping: $' . $found['shipping'] . ' | Tax: $' . $found['tax'] .'</p>';
       echo '<p>' . $found['longdescription'] . '</p>';
-      echo '<br /><a href="update.php?id='.$found['id'].'"><button class="primary_button">Update Product</button></a></div>';
+      echo '<br /><a href="update.php?id='.$found['product_id'].'"><button class="primary_button">Update Product</button></a></div>';
       echo '</article>';
       
     ?>

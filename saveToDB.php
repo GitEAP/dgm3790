@@ -32,7 +32,7 @@ $result = mysqli_query($dbconnect, $query) or die('add to db query failed');
 
 $subject = "Your Order has been sent.";
 $message = "Thank You for your business ". $name . ", Here are the details of your order: You ordered " . $products . "(s). The subtotal of your order: $". $subTotal . ". Your items will be sent to: ". $address . ". Thank you for your business and hope you have a fantHATic day.";
-$from = "kylejohnson2612@gmail.com";
+$from = "nba_eap@hotmail.com";
 $to = $email;
 
 mail($to, $subject, $message, 'From:' . $from);

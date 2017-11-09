@@ -6,7 +6,7 @@ $id = $_GET['id'];
 
 $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
 
-$query = "SELECT * FROM member WHERE id='$id'";
+$query = "SELECT * FROM member WHERE mem_id='$id'";
 
 $result = mysqli_query($dbconnect, $query) or die('update query failed');
 
@@ -50,7 +50,7 @@ include 'head.php';
           <span>Credit Card <input type="number" name="creditcard" value="<?php echo $found['creditcard'] ?>" class="form-control"></span>
         </div>
 
-        <input type="hidden" name="id" value=" <?php echo $found['id'] ?> ">
+        <input type="hidden" name="id" value=" <?php echo $found['mem_id'] ?> ">
 
         <br /><br />
         <div class="text-center">

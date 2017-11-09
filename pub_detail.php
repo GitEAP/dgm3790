@@ -46,7 +46,7 @@ if(isset($_POST['submit'])){
   }else{
     $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
     
-    $query = "SELECT * FROM products WHERE id=$product_id";
+    $query = "SELECT * FROM products WHERE product_id=$product_id";
     
     $result = mysqli_query($dbconnect, $query) or die ('display query run failed');
     

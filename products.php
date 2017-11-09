@@ -30,7 +30,7 @@ include 'head.php';
           echo '<h3 class="card-title">' . $row['title'] . '</h3>';  
           echo '<p>Price: $' . $row['price'] . '</p>';
           echo '<p class="card-text">'. $row['shortdescription'] . '</p>';
-          echo '<a href="pub_detail.php?id='.$row['id'].'">View Details</a>';
+          echo '<a href="pub_detail.php?id='.$row['product_id'].'">View Details</a>';
           echo '</div>';
           echo '</div>';
         }

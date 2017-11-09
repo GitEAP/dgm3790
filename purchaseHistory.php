@@ -36,7 +36,11 @@ include 'head.php';
     echo '<p>Products Ordered: ' . $row['products'] . '<p>';
     echo '<p>Subtotal: $' . $row['subtotal'] . '<p>';
     echo '<p>Date Ordered: ' . $row['date'] . '<p>';
-    echo '<a href="updateOrders.php?id='.$row['order_id'].'"> Update </a> | <a href=deleteOrders.php?id='.$row['order_id'].'> Delete</a> | <a href=emailClient.php?id='.$row['email'].'> Email</a>';
+
+    echo '<a href="updateOrders.php?id='.$row['order_id'].'"> Update </a> '.
+    '| <a href=deleteOrders.php?id='.$row['order_id'].'> Delete</a> '.
+    '| <a href=emailClient.php?id='.$row['email'].'> Email</a>';
+   
     echo  '</div></article></div>';
 
   };

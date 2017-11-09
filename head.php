@@ -33,12 +33,7 @@
 <header class="container">
     <div class="row">
         <div class="col-xs-12 text-center">
-<<<<<<< HEAD
-            <h1>SICK AF HATS</h1>
-=======
             <h1>THE HAT COMPANY</h1>
->>>>>>> 1608db917a85a721ff2f1d77f239fb557cd3ae9a
-            <!-- <h2>INSANELY GOOD FOOD</h2> -->
             <img id="logo" src="img/logoG.png">
         </div>
     </div> 

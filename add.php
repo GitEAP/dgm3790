@@ -35,16 +35,13 @@
               <select name="category" class="form-control">
               <?php 
                 require_once('variable.php');
-                //connect to database
                 $dbconnection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('Connection Failed');
-                //Get data from category table
                 $query = "SELECT * FROM categories";
                 $result = mysqli_query($dbconnection, $query) or die('Select Query failed.');
                   while ($row = mysqli_fetch_array($result)) {
                     echo '<option value="' . $row['category_id'] . '">' . $row['type'] . '</option>';
                   }   
                 ?>
-            <!--   <option value="1">Cap</option> -->
               </select>
             </span>
           </div>

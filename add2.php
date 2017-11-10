@@ -51,7 +51,7 @@ if ($validImage == true){
 
     mysqli_close($dbconnect);
 
-    echo '<h1 class="text-center">'. $title .' has been added</h1>';
+    echo '<h1 class="text-center">'. $title .' has been added</h1> <br> <div class="text-center"><a href="add.php"><button class="primary_button">Add another</button></a> <a href="manage.php"><button class="primary_button">Back to Admin</button</a></div>';
 
 }else{
     echo '<br /><div class="text-center"><a href="add.php"> Please upload Image again</a></div><br />';

@@ -10,6 +10,7 @@ $shipping = $price * .199;
 $tax = $price * 0.065;
 $picture = $_POST['picture'];
 $id = $_POST['id'];
+$category = $_POST['category'];
 
 $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
 
@@ -23,7 +24,7 @@ include 'head.php';
 
 $ext =  pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
 $filename = $title . '.' . $ext;
-$filepath = 'img/';
+$filepath = 'img/products/';
 $picturename = $filepath . $filename;
 $validImage = true;
 
@@ -44,7 +45,7 @@ if ($validImage == true){
 
     $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
 
-    $query = "UPDATE products SET title='$title', shortdescription='$shortdescription', longdescription='$longdescription', price='$price',  picture='$picturename', shipping='$shipping', tax='$tax' WHERE product_id=$id";
+    $query = "UPDATE products SET title='$title', shortdescription='$shortdescription', longdescription='$longdescription', price='$price',  picture='$picturename', shipping='$shipping', tax='$tax', category_id='$category' WHERE product_id=$id";
 
     $result = mysqli_query($dbconnect, $query) or die('update db query failed');
 

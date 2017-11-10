@@ -5,11 +5,9 @@ require_once('variable.php');
 $id = $_GET['id'];
 
 $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
-
-$query = "SELECT * FROM products WHERE product_id='$id'";
-
-$result = mysqli_query($dbconnect, $query) or die('update query failed');
-
+//Get data from category table
+$querycategory = "SELECT * FROM products INNER JOIN categories ON (products.category_id = categories.category_id) WHERE product_id='$id'";
+$result = mysqli_query($dbconnect, $querycategory) or die('Category Query failed.');
 $found = mysqli_fetch_array($result);
 
 include 'head.php'; 
@@ -48,6 +46,23 @@ include 'head.php';
 
         <div class="form-group">
           <span>Photo<input type="file" name="picture" value="<?php echo $found['picture'] ?>" placeholder="<?php echo $found['picture'] ?>" class="form-control"></span>
+        </div>
+
+         <div class="form-group">
+          <span>Category
+            <select name="category" class="form-control">
+              
+            <?php 
+            $queryGetCategory = "SELECT * FROM categories";
+            $result2 = mysqli_query($dbconnect, $queryGetCategory) or die('Category Query failed.');
+              echo '<option value="'.$found['category_id'].'">' . $found['type'] . '</option>';
+              echo '<option>--------</option>';
+              while ($row = mysqli_fetch_array($result2)) {
+                  echo '<option value="' . $row['category_id'] . '">' . $row['type'] . '</option>';
+                }   
+              ?>
+            </select>
+          </span>
         </div>
 
         <input type="hidden" name="id" value=" <?php echo $found['product_id'] ?> ">

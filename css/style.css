@@ -115,6 +115,14 @@ nav ul li a {
     background: rgba(255, 255, 255, 0.9);
     padding: 0 10px;
 }
+@media screen and (max-width: 992px){
+    .contact {
+       width: 100%;
+    }
+    .contact .contatiner {
+       width: 100%;
+    }
+}
 .delete{
     margin-right: 10px;
 }
@@ -156,10 +164,34 @@ blockquote {
 }
 .card {
     padding-bottom: 1em;
-    margin-bottom: 2.5em;
+    margin-bottom: 3.5em;
 }
 .card img {
     width: 100%;
+}
+/*===========Pagination===================*/
+.myPagination {
+    clear: both;
+    text-align: center;
+}
+.myPagination li a i {
+    font-size: 1em;
+}
+.myPagination li a {
+    font-size: 1.5em;
+    color: #51bcb5;
+    transition: all .3s ease;
+}
+.myPagination li:hover a {
+    color: #4bd8d2;
+    background-color: #1f2833;
+}
+.myPagination li.active a {
+    color: #4bd8d2;
+    background-color: #1f2833;
+}
+.myPagination li.active:hover a {
+    background-color: #51bcb5;
 }
 /*===========BUTTONS===================*/
 .primary_button {

@@ -22,10 +22,18 @@
     };
   };
   echo $cartCount;
-  
-  
-  
   ?>)</a></li>
+
+  <li>
+    <form action="search.php" method="POST" enctype="multipart/form-data" class="form-inline my-2 my-lg-0">
+      <div class="input-group">
+        <input type="text" class="form-control mySearch" placeholder="Search for..." aria-label="Search for..." title="Search the name of a product" name="userSearch" pattern="[0-9a-zA-Z., -]{2,99}">
+        <span class="input-group-btn ">
+          <button class="btn btn-secondary mySearchBtn" type="submit"><i class="fa fa-search"></i></button>
+        </span>
+      </div>
+    </form>
+  </li>
 </ul>
 
 <div class="logNav">

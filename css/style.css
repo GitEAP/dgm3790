@@ -110,6 +110,16 @@ nav ul li a {
 .myNavBar .logNav a:hover {
     color: #2568ba;
 }
+.form-inline .input-group > .form-control:focus {
+    width: 350px;
+}
+.myNavBar .mySearch {
+    margin-top: 5px;
+}
+.myNavBar .mySearchBtn {
+    margin-top: 5px;
+    padding: 6.5px;
+}
 /*===========BODY===================*/
 .content .container {
     background: rgba(255, 255, 255, 0.9);
@@ -168,6 +178,20 @@ blockquote {
 }
 .card img {
     width: 100%;
+}
+.card.cardResult {
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border: #c5c6c7 solid 1px;
+    background-color: rgba(255,255,255, .55);
+    border-radius: 7px;
+    padding-left: 20px;
+}
+.card.cardResult a:visited, .card.cardResult a:hover {
+    text-decoration: none;
+}
+.card.cardResult a h3 {
+    font-size: 1.5em;
 }
 /*===========Pagination===================*/
 .myPagination {
@@ -257,6 +281,26 @@ a.delete_button:hover {
     color: #fff;
     padding: .5em;
 }
+/*===========CAROUSEL===================*/
+@media screen and (max-width: 767px){
+    .captionShowHide {
+        display: none;
+    }
+}
+@media screen and (min-width: 768px){
+    .captionShowHide {
+        display: block;
+    }
+}
+.carousel-inner {
+    width: 100%;
+}
+.carouselImg {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
 /*===========FOOTER===================*/
 footer.container {
     text-align: center;

@@ -96,6 +96,7 @@ include 'head.php';
 
      if ($itemFound == false) {
       echo '<p>Search results for: '.$userSearchClean.'</p>';
+      
       if (mysqli_num_rows($searchResult) > 0) {
 
         echo '<div id="accordion" role="tablist">';

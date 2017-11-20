@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
 
     setcookie('username', $username, time() + (60*60*24*30));
     setcookie('name', $row['name'], time() + (60*60*24*30));
-    setcookie('id', $row['id'], time() + (60*60*24*30));
+    setcookie('id', $row['mem_id'], time() + (60*60*24*30));
 
     mysqli_close($dbconnect);
 

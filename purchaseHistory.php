@@ -37,9 +37,9 @@ include 'head.php';
     echo '<p>Subtotal: $' . $row['subtotal'] . '<p>';
     echo '<p>Date Ordered: ' . $row['date'] . '<p>';
 
-    echo '<a href="updateOrders.php?id='.$row['order_id'].'"> Update </a> '.
-    '| <a href=deleteOrders.php?id='.$row['order_id'].'> Delete</a> '.
-    '| <a href=emailClient.php?id='.$row['email'].'> Email</a>';
+    echo '<a href="updateOrders.php?id='.$row['order_id'].'"> Update </a> ';
+    // echo '| <a href=deleteOrders.php?id='.$row['order_id'].'> Delete</a> ';
+    echo '| <a href=emailClient.php?id='.$row['email'].'> Email</a>';
    
     echo  '</div></article></div>';
 
@@ -51,7 +51,7 @@ include 'head.php';
 <div class="row">
   <div class="col-xs-12 text-center">
       <br /><br />
-      <a href="manage.php" class="padding-sm"><button class="btn btn-success btn-lg">Manage Store</button></a>
+      <a href="manage.php" class="padding-sm"><button class="primary_button">Manage Store</button></a>
       <br /><br /><br /><br />
     </div>
 </div>

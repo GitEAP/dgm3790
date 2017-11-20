@@ -86,8 +86,12 @@ include 'head.php';
 <div class="col-xs-6">
   <article class="clearfix panel panel-default">
     
+
+
+
     <?php
       if($mem_id == 0){
+
         echo '<h1 class="text-center">Your Information</h1><div class="form-group">
         <span>Name <input type="text" name="name" value="" required class="form-control"></span>
         </div>

@@ -93,132 +93,150 @@ include 'head.php';
 <?php
 //$product_id is the current product
 //$currentCategory is the current category
-
+$totalLimit = 5;
 //connect to db
-$dbconnectSimilar = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('similar connection failed');
+$dbconnectCarousels = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('similar connection failed');
+
+function print_carousel_indicators($name, $total) {
+  echo '<ol class="carousel-indicators">';
+  //display slide dots (indicators)
+    for ($i = 0; $i < $total; $i++) {
+      if ($i == 0) {
+        echo '<li data-target="#'.$name.'" data-slide-to="'.$i.'" class="active"></li>';
+      } else {
+          echo '<li data-target="#'.$name.'" data-slide-to="'.$i.'"></li>';
+      }
+    } 
+  echo '</ol>';
+}
+function randomLimit ($total) {
+    global $totalLimit;
+    $ranNum = mt_rand(1, ($total - $totalLimit));
+    $setLimit = " LIMIT $ranNum, $totalLimit";
+    return $setLimit;
+}
+function print_carousel_items ($result) {
+    $i = 1;
+    while($row = mysqli_fetch_array($result)) {
+
+      if($i == 1) {
+         echo '<div class="item active">';
+            echo '<a href="pub_detail.php?id='. $row['product_id'] .'"><img src="'.$row['picture'].'" alt="'.$row['title'].'" class="carouselImg"></a>';
+            echo '<div class="carousel-caption captionShowHide">';
+              echo '<h3>'.$row['title'].'</h3>';
+             echo ' <p>'.$row['price'].'</p>';
+           echo ' </div>';
+          echo '</div>';
+        $i++;
+      } else {
+        echo '<div class="item">';
+            echo '<a href="pub_detail.php?id='. $row['product_id'] .'"><img src="'.$row['picture'].'" alt="'.$row['title'].'" class="carouselImg"></a>';
+            echo '<div class="carousel-caption captionShowHide">';
+              echo '<h3>'.$row['title'].'</h3>';
+             echo ' <p>'.$row['price'].'</p>';
+           echo ' </div>';
+          echo '</div>';
+      }//end of if else
+    }//end of while loop
+}
+
+
 //get all products that have the same category as the current product.
 $querySimilar = "SELECT * FROM products INNER JOIN categories ON (products.category_id = categories.category_id) WHERE type='$currentCategory'";
-$resultSimilar = mysqli_query($dbconnectSimilar, $querySimilar) or die ('similar query 1 run failed');
+$resultSimilar = mysqli_query($dbconnectCarousels, $querySimilar) or die ('similar query 1 run failed');
 
-$totalLimit = 5;
 if(mysqli_num_rows($resultSimilar) < $totalLimit) {
   $totalProductsAfterLimit = mysqli_num_rows($resultSimilar);
 }
 else {
-//Random number to set as limit
+  //Random number to set as limit
   $totalProducts = mysqli_num_rows($resultSimilar);
-  $ranNum = mt_rand(1, ($totalProducts - $totalLimit));
-  $setLimit = " LIMIT $ranNum, $totalLimit";
-  $querySimilar .= $setLimit;
+  $querySimilar .= randomLimit($totalProducts);
 
-  $resultSimilar = mysqli_query($dbconnectSimilar, $querySimilar) or die ('similar query 2 run failed');
+  $resultSimilar = mysqli_query($dbconnectCarousels, $querySimilar) or die ('similar query 2 run failed');
   $totalProductsAfterLimit = mysqli_num_rows($resultSimilar);
 }
+
 ?>
   <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-6 col-md-4">
     <h2>Similar Items:</h2>
 
     <div id="similarItemCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
-      <ol class="carousel-indicators">
-      <?php
-      //display slide dots (indicators)
-        for ($i = 0; $i < $totalProductsAfterLimit; $i++) {
-          if ($i == 0) {
-            echo '<li data-target="#similarItemCarousel" data-slide-to="'.$i.'" class="active"></li>';
-          } else {
-              echo '<li data-target="#similarItemCarousel" data-slide-to="'.$i.'"></li>';
-          }
-        } 
-      ?>
-      </ol>
+      <?php print_carousel_indicators('similarItemCarousel', $totalProductsAfterLimit); ?>
+
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
-<?php
-  //display the products found
-  //get the id of those products
-  //send the id with GET through anchor tag
-  $i = 1;
-  while($rowSimilar = mysqli_fetch_array($resultSimilar)) {
+      <?php print_carousel_items ($resultSimilar); ?>
 
-    if($i == 1) {
-       echo '<div class="item active">';
-          echo '<a href="pub_detail.php?id='. $rowSimilar['product_id'] .'"><img src="'.$rowSimilar['picture'].'" alt="'.$rowSimilar['title'].'" class="carouselImg"></a>';
-          echo '<div class="carousel-caption captionShowHide">';
-            echo '<h3>'.$rowSimilar['title'].'</h3>';
-           echo ' <p>'.$rowSimilar['price'].'</p>';
-         echo ' </div>';
-        echo '</div>';
-      $i++;
-    } else {
-      echo '<div class="item">';
-          echo '<a href="pub_detail.php?id='. $rowSimilar['product_id'] .'"><img src="'.$rowSimilar['picture'].'" alt="'.$rowSimilar['title'].'" class="carouselImg"></a>';
-          echo '<div class="carousel-caption captionShowHide">';
-            echo '<h3>'.$rowSimilar['title'].'</h3>';
-           echo ' <p>'.$rowSimilar['price'].'</p>';
-         echo ' </div>';
-        echo '</div>';
-    }//end of if else
-  }//end of while loop
-?>
       </div><!-- end of carousel inner -->
     </div><!-- end of carousel -->
   </div><!-- end of div container -->
 
 
+<?php
+if(isset($_COOKIE['name'])) {
+//if logged in (name is set) => get name
+  $mem_name = $_COOKIE['name'];
+//use name to find recently purchased item
+  $queryGetRecent = "SELECT products FROM send_information WHERE name='$mem_name'";
+  $resultGetRecent = mysqli_query($dbconnectCarousels, $queryGetRecent) or die ('recent query 1 run failed');
+  $sectionTitle = 'Recently Purchased:';
 
+  if (mysqli_num_rows($resultGetRecent) == 0) {//if user has never purchased a product
+    
+    $queryAllProducts = "SELECT * FROM products";
+    $result_all_products = mysqli_query($dbconnectCarousels, $queryAllProducts) or die ('rqueryAllProducts 1 run failed');
+    $limitString = randomLimit(mysqli_num_rows($result_all_products));
+    $queryRecent = "SELECT * FROM products $limitString";
+    $sectionTitle = 'Other Products:';
 
+  }else {
+      while ($rowRecent = mysqli_fetch_array($resultGetRecent)) {
+        //get rid of number in string
+        $words = preg_replace('/[0-9]+/', '', $rowRecent['products']);//pattern, replace, subject
+        //make a list of products, getting rid of commas
+        $productWords = explode(',', $words);
 
+        foreach ($productWords as $product) {
+          if(!empty($product)) {
+            $productArray[] = ucfirst($product);
+          }//end of if
+        }//end of foreach
 
+      }//end of while loop
+
+    $whereList = array();
+    foreach ($productArray as $product) {
+      $whereList[] = "title='$product'";
+    }//end of foreach
+
+    $whereClause = implode(' OR ', $whereList);
+
+    $queryRecent = "SELECT * FROM products WHERE $whereClause LIMIT $totalLimit";
+
+  }// end of if else mysqli_num_rows($resultGetRecent) == 0
+} //end of if cookie name is set
+else {
+    $queryAllProducts = "SELECT * FROM products";
+    $result_all_products = mysqli_query($dbconnectCarousels, $queryAllProducts) or die ('queryAllProducts 2 run failed');
+    $limitString = randomLimit(mysqli_num_rows($result_all_products));
+    $queryRecent = "SELECT * FROM products $limitString";
+    $sectionTitle = 'Other Products:';
+}
+
+$resultRecent = mysqli_query($dbconnectCarousels, $queryRecent) or die ('recent query 2 run failed');
+$total_recent_products = mysqli_num_rows($resultRecent);
+?>
   <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-6 col-md-4">
-    <h2>Recently Purchased:</h2>
-
+    <h2><?php echo $sectionTitle; ?></h2>
     <div id="recentlyPurchasedCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#recentlyPurchasedCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#recentlyPurchasedCarousel" data-slide-to="1"></li>
-        <li data-target="#recentlyPurchasedCarousel" data-slide-to="2"></li>
-      </ol>
-
+      <?php print_carousel_indicators('recentlyPurchasedCarousel', $total_recent_products); ?>
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
-
-        <div class="item active">
-          <img src="img/hatperson1.jpg" alt="..." class="carouselImg">
-          <div class="carousel-caption captionShowHide">
-            <h3>Lorem Ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, sint occaecat cupidatat non.</p>
-          </div>
-        </div>
-
-        <div class="item">
-          <img src="img/hatperson2.jpg" alt="..." class="carouselImg">
-          <div class="carousel-caption captionShowHide">
-            <h3>Lorem Ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, sint occaecat cupidatat non.</p>
-          </div>
-        </div>
-
-        <div class="item">
-          <img src="img/hatperson3.jpg" alt="..." class="carouselImg">
-          <div class="carousel-caption captionShowHide">
-            <h3>Lorem Ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, sint occaecat cupidatat non.</p>
-          </div>
-        </div>
-
+      <?php print_carousel_items ($resultRecent); ?>
       </div><!-- end of inner -->
-
-      <!-- Controls -->
-    <!--   <a class="left carousel-control" href="#recentlyPurchasedCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#recentlyPurchasedCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a> -->
     </div><!-- end of carousel -->
   </div><!-- end of div container -->
 
@@ -226,43 +244,22 @@ else {
 
 
 
+
+<?php
+
+?>
   <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-6 col-md-4">
     <h2>Customers also bought:</h2>
 
     <div id="customersBoughtCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#customersBoughtCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#customersBoughtCarousel" data-slide-to="1"></li>
-        <li data-target="#customersBoughtCarousel" data-slide-to="2"></li>
-      </ol>
+ 
+      <!-- print_carousel_indicators('similarItemCarousel', $totalProductsAfterLimit); -->
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
 
-        <div class="item active">
-          <img src="img/hatperson1.jpg" alt="..." class="carouselImg">
-          <div class="carousel-caption captionShowHide">
-            <h3>Lorem Ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, sint occaecat cupidatat non.</p>
-          </div>
-        </div>
-
-        <div class="item">
-          <img src="img/hatperson2.jpg" alt="..." class="carouselImg">
-          <div class="carousel-caption captionShowHide">
-            <h3>Lorem Ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, sint occaecat cupidatat non.</p>
-          </div>
-        </div>
-
-        <div class="item">
-          <img src="img/hatperson3.jpg" alt="..." class="carouselImg">
-          <div class="carousel-caption captionShowHide">
-            <h3>Lorem Ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, sint occaecat cupidatat non.</p>
-          </div>
-        </div>
+      <!-- print_carousel_items ($resultRecent); -->
 
       </div><!-- end of inner -->
 
@@ -281,15 +278,10 @@ else {
 
 
 
-
-
-  </div>
-</div>
+  </div><!-- end of col -->
+</div><!-- end of row -->
 
 <br><br>
-
-
-
 
 
 <?php include 'footer.php'; ?>

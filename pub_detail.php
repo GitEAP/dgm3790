@@ -45,9 +45,7 @@ if(isset($_POST['submit'])){
     
   }else{
     $dbconnect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('connection failed');
-    
-    // $query = "SELECT * FROM products WHERE product_id=$product_id";
-    
+        
     $query = "SELECT * FROM products INNER JOIN categories ON (products.category_id = categories.category_id) WHERE product_id=$product_id";
 
     $result = mysqli_query($dbconnect, $query) or die ('display query run failed');
@@ -90,6 +88,10 @@ include 'head.php';
 <div class="row">
   <div class="col-xs-1"></div>
   <div class="col-xs-12">
+
+
+
+
 <?php
 //$product_id is the current product
 //$currentCategory is the current category
@@ -139,6 +141,21 @@ function print_carousel_items ($result) {
       }//end of if else
     }//end of while loop
 }
+function all_products_rand($connection) {
+    $queryAllProducts = "SELECT * FROM products";
+    $result_all_products = mysqli_query($connection, $queryAllProducts) or die ('queryAllProducts 2 run failed');
+    $limitString = randomLimit(mysqli_num_rows($result_all_products));
+    return "SELECT * FROM products $limitString";
+}
+function isContain($stringCheck, $find) {
+  $itemFound = false;
+  $checkItem = strpos($stringCheck, $find);
+  if($checkItem > 0){
+    $itemFound = true;
+  }
+  return $itemFound;
+}
+
 
 
 //get all products that have the same category as the current product.
@@ -185,10 +202,7 @@ if(isset($_COOKIE['name'])) {
 
   if (mysqli_num_rows($resultGetRecent) == 0) {//if user has never purchased a product
     
-    $queryAllProducts = "SELECT * FROM products";
-    $result_all_products = mysqli_query($dbconnectCarousels, $queryAllProducts) or die ('rqueryAllProducts 1 run failed');
-    $limitString = randomLimit(mysqli_num_rows($result_all_products));
-    $queryRecent = "SELECT * FROM products $limitString";
+    $queryRecent = all_products_rand($dbconnectCarousels);
     $sectionTitle = 'Other Products:';
 
   }else {
@@ -218,10 +232,7 @@ if(isset($_COOKIE['name'])) {
   }// end of if else mysqli_num_rows($resultGetRecent) == 0
 } //end of if cookie name is set
 else {
-    $queryAllProducts = "SELECT * FROM products";
-    $result_all_products = mysqli_query($dbconnectCarousels, $queryAllProducts) or die ('queryAllProducts 2 run failed');
-    $limitString = randomLimit(mysqli_num_rows($result_all_products));
-    $queryRecent = "SELECT * FROM products $limitString";
+    $queryRecent = all_products_rand($dbconnectCarousels);
     $sectionTitle = 'Other Products:';
 }
 
@@ -242,24 +253,103 @@ $total_recent_products = mysqli_num_rows($resultRecent);
 
 
 
-
-
-
 <?php
+$currentProductTitle = $found['title'];
+$findString = $currentProductTitle;
 
+$queryGetElseBought = "SELECT * FROM send_information";
+$resultGetElseBought = mysqli_query($dbconnectCarousels, $queryGetElseBought) or die ('resultGetElseBought query 1 failed');
+
+//Makes an array of names who bought the current item displayed.
+$usersBought = array();
+$j = 0;
+while ($rowBought = mysqli_fetch_array($resultGetElseBought)) {
+ 
+  if (isContain($rowBought['products'], $findString)) {
+    //if found, get current row name
+    if ($j == 0) {
+      $usersBought[] = $rowBought['name'];
+      $j++;
+    }
+    foreach ($usersBought as $user) {
+        if ($user == $rowBought['name'] && !empty($user)) {
+          break;
+        }
+        else {
+          $usersBought[] = $rowBought['name'];
+        }
+    }//end of foreach
+  }//end of else if
+}//end of while loop
+
+// get all rows with names found
+ $whereListBought = array();
+  foreach ($usersBought as $name) {
+    $whereListBought[] = "name='$name'";
+  }
+
+//display the rows found from db
+$whereClauseBought = implode(' OR ', $whereListBought);
+
+
+if (!empty($whereClauseBought)) {
+   if (count($whereClauseBought) == 1) {
+     $queryUsers = all_products_rand($dbconnectCarousels);
+      $section3Title = 'Other Products:';
+   }
+   else {
+
+      $queryUsers = "SELECT products FROM send_information WHERE $whereClauseBought";
+
+        $section3Title = 'Customers also bought:';
+        $BoughtUserResult = mysqli_query($dbconnectCarousels, $queryUsers) or die("BoughtUserResult query failed");
+
+        while ($rowUserBought = mysqli_fetch_array($BoughtUserResult)) {
+          //get rid of number in string
+          $words = preg_replace('/[0-9]+/', '', $rowUserBought['products']);//pattern, replace, subject
+          //make a list of products, getting rid of commas
+          $productWords = explode(',', $words);
+
+          foreach ($productWords as $product) {
+            if(!empty($product)) {
+              $productArray2[] = ucfirst($product);
+            }//end of if
+          }//end of foreach
+
+        }//end of while loop
+
+      $whereTitle = array();
+      foreach ($productArray2 as $product) {
+
+        if (!in_array("title='$product'", $whereTitle) && $currentProductTitle != $product ) {
+          $whereTitle[] = "title='$product'";
+        }
+      }//end of foreach
+      $whereTitleClause = implode(' OR ', $whereTitle);
+      $queryUsers = "SELECT * FROM products WHERE $whereTitleClause LIMIT 5";
+  }//end of else
+}//end of if !empty whereClauseBought
+
+else {
+  $queryUsers = all_products_rand($dbconnectCarousels);
+  $section3Title = 'Other Products:';
+}
+
+$BoughtResult = mysqli_query($dbconnectCarousels, $queryUsers) or die("Bought Result query failed");
+$total_bought_products = mysqli_num_rows($BoughtResult);
 ?>
   <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-6 col-md-4">
-    <h2>Customers also bought:</h2>
+    <h2><?php echo $section3Title; ?></h2>
 
     <div id="customersBoughtCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
  
-      <!-- print_carousel_indicators('similarItemCarousel', $totalProductsAfterLimit); -->
+      <?php print_carousel_indicators('customersBoughtCarousel', $total_bought_products); ?>
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
 
-      <!-- print_carousel_items ($resultRecent); -->
+      <?php print_carousel_items ($BoughtResult); ?>
 
       </div><!-- end of inner -->
 
@@ -274,9 +364,6 @@ $total_recent_products = mysqli_num_rows($resultRecent);
       </a> -->
     </div><!-- end of carousel -->
   </div><!-- end of div container -->
-
-
-
 
   </div><!-- end of col -->
 </div><!-- end of row -->

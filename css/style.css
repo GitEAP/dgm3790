@@ -39,6 +39,11 @@ header.container{
     margin-top: 100px;
     height: 400px
 }
+@media screen and (max-width: 992px){
+    header.container{
+        margin-top: 0px;
+    }
+}
 header h1 {
     font-size: 2em;
     font-weight: 400;
@@ -52,6 +57,7 @@ header h1, header h2 {
     color: #4bd8d2;
 }
 nav {
+    margin: 0;
     padding: .5em 0;
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -61,39 +67,147 @@ nav ul li a {
 /*========CUSTOM NAVIGATION STYLES===========*/
 .myNavBar {
     display: block;
-    width: 102%;
-    margin-left: -1%;
+    width: 100%;
     background-color: #1f2833;
     clear: both;
     height: 50px;
     color: #c5c6c7;
 }
-.mainNav{
-    float: left;
-    display: block;
-    padding-left: 0;
-    margin-top: 5px;
-    margin-left: 10px;
+/*phone view*/
+@media screen and (max-width: 992px){
+    .myNavBar {
+        width: 100%; 
+    }
 }
-.mainNav li {
-    float: left;
-    list-style-type: none;
-    display: inline-block;
-    transition: .3s;
+@media screen and (min-width: 993px){
+    .myNavBar {
+        width: 970px; 
+        margin: 0 auto;
+    }
 }
-.mainNav li a {
-    display: block;
-    text-decoration: none;
-    font-size: 1.15em;
-    padding: .4em 10px .3em 10px;
-    text-align: center;
-    color: #4bd8d2;
-    transition: .3s;
+@media screen and (min-width: 1200px){
+    .myNavBar {
+        width: 1170px; 
+        margin: 0 auto;
+    }
 }
-.mainNav li:hover a {
-    background-color: #eff6ff;
-    color: #2568ba;
+
+/*=============================================Responsive Bar========================================================*/
+    .menuBtn {
+        display: initial;
+        font-size: 1.5em;
+        padding: .3em 10px .2em 10px;
+        color: #4bd8d2;
+        background-color: #1f2833;
+        border: 0;
+        margin-left: 10px;
+        
+    }
+    .closeBtn {
+        position: absolute;
+        top: 10px;
+        right: 50px;
+        font-size: 1.6em;
+        color: #fff;
+        padding: 10px;
+        display: block;
+    }
+    .closeBtn:hover {
+        color: #4bd8d2;
+    }
+    .logNav {
+        position: absolute;
+        top: 10px;
+        left: 50px;
+    }
+    .mainNav li form{
+      margin: 0 auto;
+      display: block;
+    }
+    @media screen and (max-width: 400px){
+        .closeBtn {
+            right: 10px;
+        }
+        .logNav {
+            left: 10px;
+        }
+    }
+    .navOverlay {
+        position: fixed;
+        top: 0;
+        left: -10000000px;
+        width: 0%;
+        height: 100%;
+        z-index: 999;
+        background-color: #000;
+        background-color: rgba(0,0,0,.75);
+        padding: 50px;
+    }
+    .mainNav {
+        margin-top: 20px;
+    }
+    .mainNav li {
+        list-style-type: none;
+        display: block;
+        transition: .3s;
+    }
+    .mainNav li a {
+        display: block;
+        text-decoration: none;
+        font-size: 1.6em;
+        padding: .4em 10px .3em 10px;
+        text-align: center;
+        color: #4bd8d2;
+        transition: .3s;
+    }
+@media screen and (min-width: 993px){
+    .menuBtn {
+        display: none;
+    }
+    .mainNav{
+        float: left;
+        display: block;
+        padding-left: 0;
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+    .mainNav li {
+        float: left;
+        list-style-type: none;
+        display: inline-block;
+        /*transition: .3s;*/
+    }
+    .mainNav li a {
+        /*display: block;*/
+        /*text-decoration: none;*/
+        font-size: 1.15em;
+        /*padding: .4em 10px .3em 10px;*/
+        /*text-align: center;*/
+        /*color: #4bd8d2;*/
+        /*transition: .3s;*/
+    }
+    .mainNav li:hover a {
+        background-color: #eff6ff;
+        color: #2568ba;
+    }
+    .logNav {
+        position: static;
+    }
+    .navOverlay {
+        position: static;
+        width: auto;
+        height: auto;
+        z-index: auto;
+        background-color: transparent;
+        padding: initial;
+    }
+    .closeBtn {
+        display: none;
+    }
 }
+
+/*=============================end of responsive Bar=====================================*/
+
 .logNav{
     float: right;
     display: block;
@@ -110,15 +224,22 @@ nav ul li a {
 .myNavBar .logNav a:hover {
     color: #2568ba;
 }
-.form-inline .input-group > .form-control:focus {
-    width: 350px;
+/*===========Search Bar===================*/
+@media screen and (min-width: 993px){
+    .input-group > .form-control {
+        transition: width .3s ease;
+    }
+    .input-group > .form-control:focus {
+        width: 350px;
+    }
 }
 .myNavBar .mySearch {
     margin-top: 5px;
 }
 .myNavBar .mySearchBtn {
     margin-top: 5px;
-    padding: 6.5px;
+    padding: 6px 10px;
+    transition: .3s ease;
 }
 /*===========BODY===================*/
 .content .container {
@@ -126,11 +247,13 @@ nav ul li a {
     padding: 0 10px;
 }
 @media screen and (max-width: 992px){
-    .contact {
-       width: 100%;
+    .container {
+        width: 100%;
+        margin: 0;
     }
-    .contact .contatiner {
-       width: 100%;
+    .row {
+        margin: 0;
+        width: 100%;
     }
 }
 .delete{
@@ -300,7 +423,20 @@ a.delete_button:hover {
     display: block;
     margin: 0 auto;
 }
-
+.carouselDots li {
+    border-color: #1f2833;
+    transition: transform .2s ease;
+}
+.carouselDots li:hover {
+    transform: scale(1.4);
+}
+.carouselDots li.active {
+    background: #4bd8d2;
+}
+.carousel-caption p {
+    text-shadow: 0px 2px 10px rgba(0,0,0,.8);
+    font-size: 1.25em;
+}
 /*===========FOOTER===================*/
 footer.container {
     text-align: center;

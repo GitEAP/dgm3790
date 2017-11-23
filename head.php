@@ -43,6 +43,8 @@
 </header><!-- end header -->
 
 <div class="content">
+
+<?php include 'nav.php'; ?>
+
 <div class="container">
 
-            <?php include 'nav.php'; ?>

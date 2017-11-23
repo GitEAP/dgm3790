@@ -1,5 +1,11 @@
 <div class="myNavBar">
 
+<button class="menuBtn"><i class="fa fa-bars"></i> Menu</button>
+
+<div class="navOverlay">
+
+<span class="fa fa-times closeBtn"></span>
+
 <ul class="mainNav">
   <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
   <li><a href="products.php"><i class="fa fa-automobile"></i> Products</a></li>
@@ -25,7 +31,7 @@
   ?>)</a></li>
 
   <li>
-    <form action="search.php" method="POST" enctype="multipart/form-data" class="form-inline my-2 my-lg-0">
+    <form action="search.php" method="POST" enctype="multipart/form-data" class="">
       <div class="input-group">
         <input type="text" class="form-control mySearch" placeholder="Search for..." aria-label="Search for..." title="Search the name of a product" name="userSearch" pattern="[0-9a-zA-Z., -]{2,99}">
         <span class="input-group-btn ">
@@ -34,6 +40,7 @@
       </div>
     </form>
   </li>
+
 </ul>
 
 <div class="logNav">
@@ -47,6 +54,8 @@
       }
     ?>
 </div>
+
+</div><!-- end navOverlay -->
 
 </div><!-- end myNavBar -->
 

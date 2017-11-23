@@ -100,7 +100,7 @@ $totalLimit = 5;
 $dbconnectCarousels = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('similar connection failed');
 
 function print_carousel_indicators($name, $total) {
-  echo '<ol class="carousel-indicators">';
+  echo '<ol class="carousel-indicators carouselDots">';
   //display slide dots (indicators)
     for ($i = 0; $i < $total; $i++) {
       if ($i == 0) {
@@ -251,8 +251,6 @@ $total_recent_products = mysqli_num_rows($resultRecent);
     </div><!-- end of carousel -->
   </div><!-- end of div container -->
 
-
-
 <?php
 $currentProductTitle = $found['title'];
 $findString = $currentProductTitle;
@@ -290,7 +288,6 @@ while ($rowBought = mysqli_fetch_array($resultGetElseBought)) {
 
 //display the rows found from db
 $whereClauseBought = implode(' OR ', $whereListBought);
-
 
 if (!empty($whereClauseBought)) {
    if (count($whereClauseBought) == 1) {
@@ -363,7 +360,7 @@ $total_bought_products = mysqli_num_rows($BoughtResult);
         <span class="sr-only">Next</span>
       </a> -->
     </div><!-- end of carousel -->
-  </div><!-- end of div container -->
+  </div><!-- end of div col container -->
 
   </div><!-- end of col -->
 </div><!-- end of row -->

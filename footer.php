@@ -66,54 +66,59 @@
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        var filterForm = $('#filterForm');
-        var filterFormInputs = $('#filterForm label');
-        var clickedInput = $('#filterForm').find('input[id=all]');
+$(document).ready(function(){
+// *************************** Categories Filter **************************************
+    var filterForm = $('#filterForm');
+    var filterFormInputs = $('#filterForm label');
+    var clickedInput = $('#filterForm').find('input[id=all]');
+
 
     filterFormInputs.on("change", function (){
 
-        if($(this).is(filterFormInputs[0])){
-            clickedInput.attr("value", "userAll");
-            filterForm.submit();
-        } else {
-             filterForm.submit();
+    if($(this).is(filterFormInputs[0])){
+        clickedInput.attr("value", "userAll");
+        filterForm.submit();
+    } else {
+         filterForm.submit();
+    }
+    });
+
+// *************************** Responsive menu **************************************
+    var openBtn = $('.menuBtn');
+    var closeBtn = $('.closeBtn');
+    var navOverlay = $('.navOverlay');
+
+    // run test on initial page load
+    checkSize();
+    // run test on resize of the window
+    $(window).resize(checkSize);
+
+    //Function to the css rule
+    function checkSize(){
+        //when resize from tablet/desktop to mobile, keep menu close by default.
+        navOverlay.css({"left": "-100000px", "width": "0%"});
+        $('body').css("overflow", "visible");
+        //makes width 25% if tablet or desktop
+        if ($(window).width() >= 993) {
+            navOverlay.css({"left": "0", "width": "100%"});
+            $('body').css("overflow", "visible");
         }
-        
-    });
+        //checks if it's mobile
+        if ($(window).width() < 993) {  
+            //if close button is clicked, then close the menu
+            closeBtn.click(function(){
+                navOverlay.css({"left": "-100000px", "width": "0%"});
+                $('body').css("overflow", "visible");
 
-
-
-
- // function submitForm() {
- //         filterForm.submit();
- //    }
-
-
-    // $(filterFormInputs[0]).click(function(){
-
-    //     clickedInput.attr("name", "filter['userAll']");
-
-    //     filterForm.change(function(){
-    //         setTimeout(submitForm(), 10000);
-    //     });
-
-    // });
-
-
-
-
-        // //checks if the form has Changed
-        // filterForm.change(function(){
-        //     //after user chooses a categories, add a delay
-        //     setTimeout(function(){ 
-
-        //         filterForm.submit();
-                
-        //     }, 1000);
-        // });
-
-    });
+            });
+            //if open button is clicked, then open the menu
+            openBtn.click(function(){
+                navOverlay.css({"left": "0", "width": "100%"});
+                $('body').css("overflow", "hidden");
+            });
+        }
+    }
+});
 </script>
 
 </body>

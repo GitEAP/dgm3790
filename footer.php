@@ -4,22 +4,24 @@
 
 <footer class="container">
     <div class="row">
-        <div class="col-xs-4"><br><br>
+        <div class="col-xs-12 col-sm-4"><br><br>
             <div class="links" id="socialBar">
-                <a href="#"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-pinterest-square fa-2x" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
             </div>
         </div>
-        <div class="col-xs-4">
+
+        <div class="col-xs-6 col-sm-4">
             <br>
             <div class="text-center">
                 <p class="bigFooter">The Hat Company</p> 
                 <p>&copy; 2017</p>
             </div>
         </div>
-        <div class="col-xs-4">
+
+        <div class="col-xs-6 col-sm-4">
         <br><br>
             <div class="text-center">
                 <a href="manage.php">Admin</a>
@@ -30,8 +32,6 @@
 </footer><!-- end footer -->
          
 
-
-    
 
 
 <!--========SCRIPTS===============-->

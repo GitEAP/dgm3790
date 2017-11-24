@@ -13,6 +13,9 @@ body {
     font-weight: 400;
     background-color: black;
     background-image: url(../img/bg.jpg);
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
@@ -145,19 +148,22 @@ nav ul li a {
     }
     .mainNav {
         margin-top: 20px;
+        padding: 0;
     }
     .mainNav li {
         list-style-type: none;
         display: block;
+        -webkit-transition: .3s;
         transition: .3s;
     }
     .mainNav li a {
         display: block;
         text-decoration: none;
-        font-size: 1.6em;
-        padding: .4em 10px .3em 10px;
+        font-size: 1.8em;
+        padding: .4em 0px .3em 0px;
         text-align: center;
         color: #4bd8d2;
+        -webkit-transition: .3s;
         transition: .3s;
     }
 @media screen and (min-width: 993px){
@@ -181,7 +187,7 @@ nav ul li a {
         /*display: block;*/
         /*text-decoration: none;*/
         font-size: 1.15em;
-        /*padding: .4em 10px .3em 10px;*/
+        padding: .4em 10px .3em 10px;
         /*text-align: center;*/
         /*color: #4bd8d2;*/
         /*transition: .3s;*/
@@ -227,6 +233,7 @@ nav ul li a {
 /*===========Search Bar===================*/
 @media screen and (min-width: 993px){
     .input-group > .form-control {
+        -webkit-transition: width .3s ease;
         transition: width .3s ease;
     }
     .input-group > .form-control:focus {
@@ -239,6 +246,7 @@ nav ul li a {
 .myNavBar .mySearchBtn {
     margin-top: 5px;
     padding: 6px 10px;
+    -webkit-transition: .3s ease;
     transition: .3s ease;
 }
 /*===========BODY===================*/
@@ -307,6 +315,8 @@ blockquote {
     margin-bottom: 25px;
     border: #c5c6c7 solid 1px;
     background-color: rgba(255,255,255, .55);
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
     border-radius: 7px;
     padding-left: 20px;
 }
@@ -327,6 +337,7 @@ blockquote {
 .myPagination li a {
     font-size: 1.5em;
     color: #51bcb5;
+    -webkit-transition: all .3s ease;
     transition: all .3s ease;
 }
 .myPagination li:hover a {
@@ -345,10 +356,13 @@ blockquote {
     margin: .75em 0;
     display: inline-block;
     font-size: 1.2em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #51bcb5;
     color: #fff;
     padding: .5em;
+    -webkit-transition: background .3s, border-color .3s;
     transition: background .3s, border-color .3s;
     background: #60dbd3;
     background: -moz-linear-gradient(top, #60dbd3 0%, #51bcb5 100%);
@@ -367,10 +381,13 @@ blockquote {
 a.delete_button {
     display: inline-block;
     font-size: 1em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #BA5351;
     color: #fff;
     padding: .5em;
+    -webkit-transition: background .3s;
     transition: background .3s;
     background: #BA5351;
 }
@@ -383,11 +400,14 @@ a.delete_button:hover {
     margin: .75em 0;
     display: inline-block;
     font-size: 1.2em;
+    -webkit-border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
     border-radius: 0 5px 5px 0;
     background-color: #51bcb5;
     border: 1px solid #51bcb5;
     color: #fff;
     padding: .5em;
+    -webkit-transition: background-color .3s, border-color .3s, color .3s;
     transition: background-color .3s, border-color .3s, color .3s;
 }
 .addCartBtn:hover {
@@ -398,11 +418,21 @@ a.delete_button:hover {
 .priceTag {
     display: inline-block;
     font-size: 1.2em;
+    -webkit-border-radius: 5px 0px 0px 5px;
+    -moz-border-radius: 5px 0px 0px 5px;
     border-radius: 5px 0px 0px 5px;
     background-color: #9f9fa0;
     border: 1px solid #9f9fa0;
     color: #fff;
     padding: .5em;
+}
+@media screen and (max-width: 340px){
+    .addCartBtn {
+       font-size: .8em;
+    }
+    .priceTag {
+        font-size: .8em;
+    }
 }
 /*===========CAROUSEL===================*/
 @media screen and (max-width: 767px){
@@ -425,13 +455,36 @@ a.delete_button:hover {
 }
 .carouselDots li {
     border-color: #1f2833;
+    -webkit-transition: transform .2s ease;
     transition: transform .2s ease;
 }
 .carouselDots li:hover {
+    -webkit-transform: scale(1.4);
     transform: scale(1.4);
 }
 .carouselDots li.active {
     background: #4bd8d2;
+}
+@media screen and (max-width: 768px){
+    .carouselDots {
+        margin: 0;
+        left: 0;
+        width: 100%;
+    }
+    .carouselDots li {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        transform: scale(1.5);
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .carouselDots li.active {
+        -webkit-transform: scale(1.75);
+        -moz-transform: scale(1.75);
+        transform: scale(1.75);
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 }
 .carousel-caption p {
     text-shadow: 0px 2px 10px rgba(0,0,0,.8);
@@ -446,6 +499,12 @@ footer.container {
     background-color: rgba(0, 0, 0, 0.6);
     margin-bottom: 100px;
 }
+@media screen and (max-width: 992px){
+    footer.container{
+        margin-bottom: 0px;
+        height: 250px;
+    }
+}
 footer p {
     padding: 0.2em;
     text-align: center;
@@ -456,8 +515,15 @@ footer a {
     color: #c5c6c7;
     -webkit-transition: color .5s; /* For Safari 3.1 to 6.0 */
     transition: color .5s;
-    margin: 20px;
 }
 footer a:hover {
     color: #51bcb5;
-}  
+} 
+footer .links {
+    font-size: 1.5em;
+}
+@media screen and (min-width: 993px){
+    footer .links{
+       font-size: 2em; 
+    }
+}

@@ -178,7 +178,7 @@ include 'head.php';
 </div>
 <div class="row">
   <div class="col-xs-1"></div>
-  <div class="col-xs-10">
+  <div class="col-xs-12 col-sm-10">
     
      <?php
      //display each item

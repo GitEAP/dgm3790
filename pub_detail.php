@@ -67,7 +67,7 @@ include 'head.php';
 
 <div class="row">
   <div class="col-xs-1"></div>
-  <div class="col-xs-10">
+  <div class="col-xs-12 col-sm-10">
     <?php
       echo '<article class="clearfix panel panel-default">';
       echo '<form action="pub_detail.php" method="POST" enctype="multipart/form-data" class="form-horizontal padding-sm">';
@@ -175,7 +175,7 @@ else {
 }
 
 ?>
-  <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-6 col-md-4">
+  <div class="col-xs-12 col-sm-6 col-md-4">
     <h2>Similar Items:</h2>
 
     <div id="similarItemCarousel" class="carousel slide" data-ride="carousel">
@@ -239,7 +239,7 @@ else {
 $resultRecent = mysqli_query($dbconnectCarousels, $queryRecent) or die ('recent query 2 run failed');
 $total_recent_products = mysqli_num_rows($resultRecent);
 ?>
-  <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-6 col-md-4">
+  <div class="col-xs-12 col-sm-6 col-md-4">
     <h2><?php echo $sectionTitle; ?></h2>
     <div id="recentlyPurchasedCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
@@ -335,7 +335,7 @@ else {
 $BoughtResult = mysqli_query($dbconnectCarousels, $queryUsers) or die("Bought Result query failed");
 $total_bought_products = mysqli_num_rows($BoughtResult);
 ?>
-  <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-6 col-md-4">
+  <div class="col-xs-12 col-sm-6 col-md-4">
     <h2><?php echo $section3Title; ?></h2>
 
     <div id="customersBoughtCarousel" class="carousel slide" data-ride="carousel">

@@ -232,11 +232,26 @@ nav ul li a {
 }
 /*===========Search Bar===================*/
 @media screen and (min-width: 993px){
-    .input-group > .form-control {
-        -webkit-transition: width .3s ease;
-        transition: width .3s ease;
+    .input-group {
+        width: 150px;
+        -webkit-transition: width .75s ease-in-out;
+        -moz-transition:width .75s ease-in-out;
+        -o-transition: width .75s ease-in-out;
+        transition: width .75s ease-in-out;
     }
-    .input-group > .form-control:focus {
+    .input-group:focus-within {
+        width: 225px;
+    }
+}
+@media screen and (min-width: 1200px){
+    .input-group {
+        width: 200px;
+        -webkit-transition: width .75s ease-in-out;
+        -moz-transition:width .75s ease-in-out;
+        -o-transition: width .75s ease-in-out;
+        transition: width .75s ease-in-out;
+    }
+    .input-group:focus-within {
         width: 350px;
     }
 }
@@ -248,6 +263,20 @@ nav ul li a {
     padding: 6px 10px;
     -webkit-transition: .3s ease;
     transition: .3s ease;
+    color: #fff;
+    background: #60dbd3;
+    background: -moz-linear-gradient(top, #60dbd3 0%, #51bcb5 100%);
+    background: -webkit-linear-gradient(top, #60dbd3 0%,#51bcb5 100%);
+    background: linear-gradient(to bottom, #60dbd3 0%,#51bcb5 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#60dbd3', endColorstr='#51bcb5',GradientType=0 );
+}
+.myNavBar .mySearchBtn:hover {
+    color: #2568ba;
+    background: #eff6ff;
+    background: -moz-linear-gradient(top, #eff6ff 0%, #d4e4f7 100%);
+    background: -webkit-linear-gradient(top, #eff6ff 0%,#d4e4f7 100%);
+    background: linear-gradient(to bottom, #eff6ff 0%,#d4e4f7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eff6ff', endColorstr='#d4e4f7',GradientType=0 );
 }
 /*===========BODY===================*/
 .content .container {

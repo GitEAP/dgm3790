@@ -251,6 +251,18 @@ $total_recent_products = mysqli_num_rows($resultRecent);
     </div><!-- end of carousel -->
   </div><!-- end of div container -->
 
+
+
+
+
+
+
+
+
+
+
+
+
 <?php
 $currentProductTitle = $found['title'];
 $findString = $currentProductTitle;
@@ -285,17 +297,17 @@ while ($rowBought = mysqli_fetch_array($resultGetElseBought)) {
   foreach ($usersBought as $name) {
     $whereListBought[] = "name='$name'";
   }
-
 //display the rows found from db
 $whereClauseBought = implode(' OR ', $whereListBought);
 
 if (!empty($whereClauseBought)) {
-   if (count($whereClauseBought) == 1) {
+
+   if (count($whereClauseBought) > 1) {
      $queryUsers = all_products_rand($dbconnectCarousels);
       $section3Title = 'Other Products:';
    }
+   
    else {
-
       $queryUsers = "SELECT products FROM send_information WHERE $whereClauseBought";
 
         $section3Title = 'Customers also bought:';

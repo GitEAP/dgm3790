@@ -88,13 +88,7 @@ include 'head.php';
 <div class="row">
   <div class="col-xs-1"></div>
   <div class="col-xs-12">
-
-
-
-
 <?php
-//$product_id is the current product
-//$currentCategory is the current category
 $totalLimit = 5;
 //connect to db
 $dbconnectCarousels = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE) or die('similar connection failed');
@@ -173,7 +167,6 @@ else {
   $resultSimilar = mysqli_query($dbconnectCarousels, $querySimilar) or die ('similar query 2 run failed');
   $totalProductsAfterLimit = mysqli_num_rows($resultSimilar);
 }
-
 ?>
   <div class="col-xs-12 col-sm-6 col-md-4">
     <h2>Similar Items:</h2>
@@ -367,6 +360,5 @@ $total_bought_products = mysqli_num_rows($BoughtResult);
 </div><!-- end of row -->
 
 <br><br>
-
 
 <?php include 'footer.php'; ?>

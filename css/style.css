@@ -94,78 +94,77 @@ nav ul li a {
         margin: 0 auto;
     }
 }
-
 /*=============================================Responsive Bar========================================================*/
-    .menuBtn {
-        display: initial;
-        font-size: 1.5em;
-        padding: .3em 10px .2em 10px;
-        color: #4bd8d2;
-        background-color: #1f2833;
-        border: 0;
-        margin-left: 10px;
-        
-    }
+.menuBtn {
+    display: initial;
+    font-size: 1.5em;
+    padding: .3em 10px .2em 10px;
+    color: #4bd8d2;
+    background-color: #1f2833;
+    border: 0;
+    margin-left: 10px;
+    
+}
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    font-size: 1.6em;
+    color: #fff;
+    padding: 10px;
+    display: block;
+}
+.closeBtn:hover {
+    color: #4bd8d2;
+}
+.logNav {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+}
+.mainNav li form{
+  margin: 0 auto;
+  display: block;
+}
+@media screen and (max-width: 400px){
     .closeBtn {
-        position: absolute;
-        top: 10px;
-        right: 50px;
-        font-size: 1.6em;
-        color: #fff;
-        padding: 10px;
-        display: block;
-    }
-    .closeBtn:hover {
-        color: #4bd8d2;
+        right: 10px;
     }
     .logNav {
-        position: absolute;
-        top: 10px;
-        left: 50px;
+        left: 10px;
     }
-    .mainNav li form{
-      margin: 0 auto;
-      display: block;
-    }
-    @media screen and (max-width: 400px){
-        .closeBtn {
-            right: 10px;
-        }
-        .logNav {
-            left: 10px;
-        }
-    }
-    .navOverlay {
-        position: fixed;
-        top: 0;
-        left: -10000000px;
-        width: 0%;
-        height: 100%;
-        z-index: 999;
-        background-color: #000;
-        background-color: rgba(0,0,0,.75);
-        padding: 50px;
-    }
-    .mainNav {
-        margin-top: 20px;
-        padding: 0;
-    }
-    .mainNav li {
-        list-style-type: none;
-        display: block;
-        -webkit-transition: .3s;
-        transition: .3s;
-    }
-    .mainNav li a {
-        display: block;
-        text-decoration: none;
-        font-size: 1.8em;
-        padding: .4em 0px .3em 0px;
-        text-align: center;
-        color: #4bd8d2;
-        -webkit-transition: .3s;
-        transition: .3s;
-    }
+}
+.navOverlay {
+    position: fixed;
+    top: 0;
+    left: -10000000px;
+    width: 0%;
+    height: 100%;
+    z-index: 999;
+    background-color: #000;
+    background-color: rgba(0,0,0,.75);
+    padding: 50px;
+}
+.mainNav {
+    margin-top: 20px;
+    padding: 0;
+}
+.mainNav li {
+    list-style-type: none;
+    display: block;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+.mainNav li a {
+    display: block;
+    text-decoration: none;
+    font-size: 1.8em;
+    padding: .4em 0px .3em 0px;
+    text-align: center;
+    color: #4bd8d2;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
 @media screen and (min-width: 993px){
     .menuBtn {
         display: none;
@@ -211,9 +210,7 @@ nav ul li a {
         display: none;
     }
 }
-
 /*=============================end of responsive Bar=====================================*/
-
 .logNav{
     float: right;
     display: block;

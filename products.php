@@ -79,7 +79,6 @@ function findFilter() {
 }
 /////////////////////////////////////////END of Filter Categories//////////////////////////////////////
 
-
 /////////////////////////////////////////PAGINATION//////////////////////////////////////
 //declare variables for pagination
 if (!isset($_GET['currentPage'])) {
@@ -146,8 +145,6 @@ include 'head.php';
   <div class="col-xs-12 text-center">
     <h1>Products</h1>
 
-
-
 <form action="products.php" method="POST" enctype="multipart/form-data" id="filterForm">
 
       <span style="padding: .4em; display: block; text-align: center;">
@@ -168,7 +165,6 @@ include 'head.php';
       while($rowCategory = mysqli_fetch_array($resultCategory)){//Gets all the categories
         printInputs($rowCategory['type']);      
       }//end of while loop
-
 ?>
     </div><!-- /end of btn group -->
 

@@ -32,8 +32,6 @@
 </footer><!-- end footer -->
          
 
-
-
 <!--========SCRIPTS===============-->
 <script src="slick/slick.min.js"></script>
 <!--Toggle button Script-->
@@ -72,7 +70,6 @@ $(document).ready(function(){
     var filterFormInputs = $('#filterForm label');
     var clickedInput = $('#filterForm').find('input[id=all]');
 
-
     filterFormInputs.on("change", function (){
 
     if($(this).is(filterFormInputs[0])){
@@ -88,12 +85,10 @@ $(document).ready(function(){
     var closeBtn = $('.closeBtn');
     var navOverlay = $('.navOverlay');
 
-    // run test on initial page load
     checkSize();
-    // run test on resize of the window
+
     $(window).resize(checkSize);
 
-    //Function to the css rule
     function checkSize(){
         //when resize from tablet/desktop to mobile, keep menu close by default.
         navOverlay.css({"left": "-100000px", "width": "0%"});

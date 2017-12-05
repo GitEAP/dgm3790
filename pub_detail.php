@@ -252,17 +252,6 @@ $total_recent_products = mysqli_num_rows($resultRecent);
   </div><!-- end of div container -->
 
 
-
-
-
-
-
-
-
-
-
-
-
 <?php
 $currentProductTitle = $found['title'];
 $findString = $currentProductTitle;
@@ -306,7 +295,7 @@ if (!empty($whereClauseBought)) {
      $queryUsers = all_products_rand($dbconnectCarousels);
       $section3Title = 'Other Products:';
    }
-   
+
    else {
       $queryUsers = "SELECT products FROM send_information WHERE $whereClauseBought";
 
